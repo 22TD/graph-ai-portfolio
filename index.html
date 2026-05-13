@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-[#030712]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thibaut Demaneuf | GenAI for Work & Research</title>
+    <title>Thibaut Demaneuf | Epidemic Intelligence Innovator</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Space Grotesk for dramatic headings, Inter for clean body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -17,19 +17,20 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Poppins', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        ocean: {
-                            900: '#0B2447',
-                            800: '#19376D',
-                            600: '#2A7A93',
-                            400: '#57C5B6',
-                            100: '#E6F4F1'
+                        surface: '#030712',
+                        surface2: '#0B1120',
+                        accent: {
+                            400: '#38bdf8', // Light blue
+                            500: '#0ea5e9',
+                            glow: '#0ea5e966'
                         },
                         bio: {
-                            500: '#10B981',
-                            600: '#059669'
+                            400: '#10b981', // Emerald
+                            500: '#059669',
+                            glow: '#10b98166'
                         }
                     }
                 }
@@ -37,243 +38,291 @@
         }
     </script>
     <style>
-        /* Custom Styles & Animations */
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        /* Immersive S1T2-style Agency Custom CSS */
+        body { 
+            background-color: #030712; 
+            color: #f8fafc; 
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor for custom one */
+        }
         
-        .hero-gradient {
-            background: linear-gradient(135deg, #0B2447 0%, #19376D 50%, #2A7A93 100%);
-            position: relative;
-            overflow: hidden;
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background: #38bdf8;
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%;
+            pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+        }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%;
+            pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        /* Interactive Hover States for Cursor */
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline, .hover-trigger:hover ~ .cursor-outline {
+            width: 60px; height: 60px;
+            background-color: rgba(56, 189, 248, 0.1);
+            border-color: #38bdf8;
         }
 
-        /* Subtle moving background pattern representing data/disease nodes */
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(87, 197, 182, 0.15) 2px, transparent 2px);
-            background-size: 30px 30px;
-            opacity: 0.6;
-            z-index: 1;
+        /* Abstract Animated Background Orbs */
+        .orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(80px); opacity: 0.4; z-index: 0;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        .orb-1 { width: 500px; height: 500px; background: #0ea5e9; top: -10%; left: -10%; animation-delay: 0s; }
+        .orb-2 { width: 600px; height: 600px; background: #10b981; bottom: -20%; right: -10%; animation-delay: -5s; }
+        .orb-3 { width: 400px; height: 400px; background: #1e3a8a; top: 40%; left: 40%; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.1); }
+            100% { transform: translate(-50px, 100px) scale(0.9); }
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 32px 0 rgba(11, 36, 71, 0.1);
+        /* Smooth Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Typography Enhancements */
+        .huge-text {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+        }
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
         }
 
-        /* Wave shape divider */
-        .custom-shape-divider-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            z-index: 2;
+        /* Glassmorphism Cards */
+        .glass-card-dark {
+            background: rgba(11, 17, 32, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease, border-color 0.4s ease;
         }
-        .custom-shape-divider-bottom svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 60px;
-        }
-        .custom-shape-divider-bottom .shape-fill {
-            fill: #f8fafc;
+        .glass-card-dark:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
         }
 
-        /* Chatbot Animations */
+        /* Image treatment */
+        .avatar-img {
+            filter: grayscale(100%) contrast(1.2);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .avatar-container:hover .avatar-img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
+        }
+
+        /* Chatbot Overlay */
         #chatbot-window {
-            transition: all 0.3s ease-in-out;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: bottom right;
         }
-        .chat-hidden {
-            opacity: 0;
-            transform: scale(0.8) translateY(20px);
-            pointer-events: none;
-        }
-        .chat-visible {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
-        }
-        
-        .message-in { animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .chat-hidden { opacity: 0; transform: scale(0.9) translateY(20px); pointer-events: none; }
+        .chat-visible { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+        .message-in { animation: slideIn 0.3s ease-out forwards; opacity: 0; transform: translateY(10px); }
+        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="text-gray-800 antialiased selection:bg-ocean-400 selection:text-white">
+<body class="antialiased">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <!-- Noise Overlay for texture -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 text-white font-heading font-bold text-xl tracking-wider drop-shadow-md">
-                    TD<span class="text-ocean-400">.</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8 text-white font-medium drop-shadow-md">
-                        <a href="#about" class="hover:text-ocean-400 transition-colors">About</a>
-                        <a href="#experience" class="hover:text-ocean-400 transition-colors">Experience</a>
-                        <a href="#course" class="hover:text-ocean-400 transition-colors">GenAI Course</a>
-                        <a href="#submissions" class="hover:text-ocean-400 transition-colors">Submissions</a>
-                        <a href="#comments" class="hover:text-ocean-400 transition-colors">Community</a>
-                    </div>
-                </div>
+    <nav class="fixed w-full z-50 mix-blend-difference py-6 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <div class="text-white font-display font-bold text-2xl tracking-tighter hover-trigger">
+                TD<span class="text-accent-400">.</span>
+            </div>
+            <div class="hidden md:flex space-x-12 text-sm font-medium tracking-widest uppercase">
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors hover-trigger">About</a>
+                <a href="#experience" class="text-gray-300 hover:text-white transition-colors hover-trigger">Experience</a>
+                <a href="#course" class="text-gray-300 hover:text-white transition-colors hover-trigger">GenAI</a>
+                <a href="#submissions" class="text-gray-300 hover:text-white transition-colors hover-trigger">Portfolio</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-gradient min-h-screen flex items-center justify-center pt-20">
-        <div class="hero-bg-pattern"></div>
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            
-            <!-- Avatar Profile Image -->
-            <div class="mb-6 relative inline-block">
-                <img src="https://github.com/22TD/graph-ai-portfolio/blob/main/TD_picture.jpg?raw=true" alt="Thibaut Demaneuf" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-white shadow-2xl object-cover relative z-10" onerror="this.src='https://via.placeholder.com/150'; this.onerror=null;">
-                <div class="absolute inset-0 rounded-full bg-ocean-400 opacity-40 blur-xl animate-pulse -z-10"></div>
-            </div>
+    <!-- Immersive Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Typography Column -->
+                <div class="lg:col-span-8 z-20">
+                    <div class="reveal inline-flex items-center space-x-3 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+                        <span class="text-accent-400 text-sm tracking-widest uppercase font-medium">Noumea, New Caledonia</span>
+                    </div>
+                    
+                    <h1 class="font-display huge-text font-bold text-white mb-2 reveal reveal-delay-1">
+                        THIBAUT
+                    </h1>
+                    <h1 class="font-display huge-text font-bold text-outline mb-8 reveal reveal-delay-2">
+                        DEMANEUF
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-gray-400 font-light max-w-2xl leading-relaxed reveal reveal-delay-3">
+                        Public Health Surveillance Specialist & Epidemic Intelligence Innovator blending data science, AI, and regional governance.
+                    </p>
 
-            <div class="flex items-center justify-center mb-6">
-                <div class="inline-flex items-center justify-center p-2 bg-ocean-800 bg-opacity-50 rounded-full border border-ocean-600 backdrop-blur-sm shadow-lg">
-                    <span class="bg-ocean-400 text-ocean-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mr-2">Location</span>
-                    <span class="text-sm text-ocean-100 pr-3 font-medium">Noumea, New Caledonia 🌴</span>
+                    <div class="mt-12 flex items-center gap-6 reveal reveal-delay-3">
+                        <a href="#course" class="group relative px-8 py-4 bg-white text-black font-display font-bold tracking-wider uppercase overflow-hidden rounded hover-trigger">
+                            <span class="relative z-10 transition-colors group-hover:text-white">Explore GenAI</span>
+                            <div class="absolute inset-0 bg-accent-500 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Avatar Column -->
+                <div class="lg:col-span-4 flex justify-center lg:justify-end reveal reveal-delay-2 z-10">
+                    <div class="avatar-container relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(14,165,233,0.15)] hover-trigger cursor-none">
+                        <img src="https://github.com/22TD/graph-ai-portfolio/blob/main/TD_picture.jpg?raw=true" alt="Thibaut Demaneuf" class="w-full h-full object-cover avatar-img" onerror="this.src='https://via.placeholder.com/400';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-60"></div>
+                    </div>
+                </div>
+
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Thibaut <span class="text-transparent bg-clip-text bg-gradient-to-r from-ocean-400 to-bio-500">Demaneuf</span>
-            </h1>
-            <h2 class="text-xl md:text-2xl text-ocean-100 mb-8 max-w-3xl mx-auto font-light">
-                Public Health Surveillance Specialist & Epidemic Intelligence Innovator
-            </h2>
-            <div class="flex justify-center space-x-4">
-                <a href="#course" class="bg-ocean-400 hover:bg-ocean-600 text-ocean-900 hover:text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg shadow-ocean-400/30">
-                    Explore Course Work
-                </a>
-                <a href="#about" class="bg-transparent border border-white hover:bg-white hover:text-ocean-900 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300">
-                    My Profile
-                </a>
-            </div>
-        </div>
-        
-        <!-- Pacific Wave Divider -->
-        <div class="custom-shape-divider-bottom">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,112.44,189.9,98.6,236.4,87.73,280.9,71.21,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
         </div>
     </header>
 
+    <!-- Scrolling Marquee Divider -->
+    <div class="w-full overflow-hidden py-10 bg-surface border-y border-white/5 relative z-10 flex">
+        <div class="whitespace-nowrap flex animate-[marquee_20s_linear_infinite]">
+            <span class="text-4xl md:text-6xl font-display font-bold text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.1); padding-right: 50px;">EPIDEMIC INTELLIGENCE — LARGE LANGUAGE MODELS — EVENT-BASED SURVEILLANCE — DATA GOVERNANCE — PUBLIC HEALTH — </span>
+            <span class="text-4xl md:text-6xl font-display font-bold text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.1); padding-right: 50px;">EPIDEMIC INTELLIGENCE — LARGE LANGUAGE MODELS — EVENT-BASED SURVEILLANCE — DATA GOVERNANCE — PUBLIC HEALTH — </span>
+        </div>
+    </div>
+    <style>@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }</style>
+
     <!-- About Section -->
-    <section id="about" class="py-20 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/3 relative">
-                    <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl relative z-10 border-4 border-white bg-ocean-100 flex items-center justify-center">
-                        <i class="fa-solid fa-microscope text-9xl text-ocean-600 opacity-20 absolute"></i>
-                        <div class="text-center p-8 z-10">
-                            <i class="fa-solid fa-user-doctor text-6xl text-ocean-800 mb-4"></i>
-                            <h3 class="font-bold text-xl text-ocean-900">MSc Epidemiology</h3>
-                            <p class="text-ocean-600 text-sm">University of Melbourne</p>
+    <section id="about" class="py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-sm tracking-widest text-bio-400 uppercase mb-4">The Mission</h2>
+                    <h3 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-8">
+                        Bridging the gap between <br><span class="text-white">Public Health</span> & <span class="text-accent-400">Artificial Intelligence</span>
+                    </h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                        Currently serving as the Surveillance and Research Officer at the <strong class="text-white">Pacific Community (SPC)</strong>. I lead regional efforts to strengthen epidemic intelligence across diverse Pacific contexts.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-10">
+                        My focus lies in integrating artificial intelligence into event-based surveillance and deploying LLM tools to elevate public health decision-making, pandemic preparedness, and e-health strategy.
+                    </p>
+
+                    <!-- Technical Skills Grid -->
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                        <div>
+                            <h4 class="text-white font-display font-bold mb-2">Technical Core</h4>
+                            <p class="text-gray-500 text-sm">R Studio, Power BI, Looker Studio, Data Mining</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-display font-bold mb-2">Methodology</h4>
+                            <p class="text-gray-500 text-sm">Agile PM, Field Epidemiology, Peer Review</p>
                         </div>
                     </div>
-                    <!-- Decorative element behind image -->
-                    <div class="absolute -bottom-6 -right-6 w-full h-full bg-gradient-to-br from-ocean-400 to-bio-500 rounded-3xl -z-10 opacity-50 blur-lg"></div>
                 </div>
-                <div class="md:w-2/3">
-                    <div class="flex items-center gap-3 mb-4 text-ocean-600 font-semibold uppercase tracking-widest text-sm">
-                        <i class="fa-solid fa-globe-oceania"></i>
-                        <span>Pacific Region Specialist</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-ocean-900 mb-6">Bridging Public Health & Artificial Intelligence</h2>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                        I am a public health surveillance specialist and epidemic intelligence innovator currently serving as the Surveillance and Research Officer at the <strong>Pacific Community (SPC)</strong>.
-                    </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        My mission is to strengthen regional epidemic intelligence by integrating artificial intelligence into event-based surveillance. I deploy large language models (LLMs) to enhance public health decision-making, utilizing my expertise in government health reform, e-health strategy, and data science to boost pandemic preparedness across diverse Pacific contexts.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                            <i class="fa-brands fa-r-project text-3xl text-ocean-600 mb-2"></i>
-                            <div class="font-semibold text-sm">R Studio</div>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                            <i class="fa-solid fa-chart-pie text-3xl text-ocean-600 mb-2"></i>
-                            <div class="font-semibold text-sm">Power BI</div>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                            <i class="fa-solid fa-network-wired text-3xl text-ocean-600 mb-2"></i>
-                            <div class="font-semibold text-sm">Data Mining</div>
-                        </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                            <i class="fa-solid fa-language text-3xl text-ocean-600 mb-2"></i>
-                            <div class="font-semibold text-sm">Tri-lingual</div>
-                        </div>
+
+                <!-- Abstract Visual -->
+                <div class="relative reveal reveal-delay-2 h-[500px] rounded-2xl overflow-hidden glass-card-dark flex items-center justify-center group hover-trigger">
+                    <i class="fa-solid fa-network-wired text-8xl text-white/5 transition-transform duration-700 group-hover:scale-110 group-hover:text-accent-400/20"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent-500/10 to-bio-500/10 mix-blend-overlay"></div>
+                    <div class="absolute bottom-10 left-10 right-10">
+                        <div class="text-white font-display font-bold text-xl mb-1">MSc Epidemiology</div>
+                        <div class="text-accent-400 text-sm tracking-widest uppercase">University of Melbourne</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Timeline Section -->
-    <section id="experience" class="py-20 bg-ocean-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-ocean-900 mb-4">Professional Journey</h2>
-                <div class="w-24 h-1 bg-ocean-400 mx-auto rounded"></div>
-            </div>
+    <!-- Experience Section (Staggered Layout) -->
+    <section id="experience" class="py-32 relative z-10 bg-surface2 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <h2 class="font-display text-5xl md:text-7xl font-bold mb-24 reveal text-center">
+                PROFESSIONAL <br><span class="text-outline">JOURNEY</span>
+            </h2>
 
-            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-ocean-300 before:to-transparent">
+            <div class="space-y-32">
                 
                 <!-- SPC -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-ocean-600 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="fa-solid fa-shield-virus"></i>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
+                    <div class="md:col-span-4 text-left md:text-right">
+                        <div class="text-accent-400 font-bold tracking-widest uppercase mb-2">2022 — Present</div>
+                        <h3 class="text-white font-display text-2xl font-bold">The Pacific Community (SPC)</h3>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-2xl">
-                        <div class="flex flex-col mb-2">
-                            <span class="text-ocean-600 font-bold text-sm uppercase">2022 - Present</span>
-                            <h3 class="font-bold text-xl text-ocean-900">Surveillance & Research Officer</h3>
-                            <span class="text-gray-500 text-sm font-medium">The Pacific Community (SPC)</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Designing epidemic intelligence systems integrating multi-source data and AI for rapid signal detection. Managing automated indicators, dashboards, and regional data governance.</p>
+                    <div class="hidden md:flex md:col-span-2 justify-center relative">
+                        <div class="w-px h-full bg-white/10 absolute top-0 bottom-0"></div>
+                        <div class="w-4 h-4 rounded-full bg-accent-400 absolute top-1/2 -translate-y-1/2 shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
+                    </div>
+                    <div class="md:col-span-6 glass-card-dark p-8 md:p-10 rounded-2xl hover-trigger">
+                        <h4 class="text-xl text-white font-bold mb-4">Surveillance & Research Officer</h4>
+                        <p class="text-gray-400 leading-relaxed text-sm md:text-base">Designs and implements epidemic intelligence systems integrating multi-source data to enhance event-based surveillance. Applies artificial intelligence for rapid signal detection, coordinates regional meetings, and manages digital health frameworks.</p>
                     </div>
                 </div>
 
                 <!-- BEACON -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-bio-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="fa-solid fa-robot"></i>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
+                    <div class="md:col-span-6 glass-card-dark p-8 md:p-10 rounded-2xl md:order-1 order-2 hover-trigger">
+                        <h4 class="text-xl text-white font-bold mb-4">Outbreak Analyst</h4>
+                        <p class="text-gray-400 leading-relaxed text-sm md:text-base">Provides expert oversight for an AI-driven global biothreat surveillance platform. Reviews multi-source pipelines, edits and publishes AI-generated outbreak reports, ensuring accuracy for situational awareness on emerging threats.</p>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-2xl">
-                        <div class="flex flex-col mb-2">
-                            <span class="text-bio-600 font-bold text-sm uppercase">2025 - Present</span>
-                            <h3 class="font-bold text-xl text-ocean-900">Outbreak Analyst</h3>
-                            <span class="text-gray-500 text-sm font-medium">BEACON</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Providing expert oversight for an AI-driven global biothreat surveillance platform. Verifying signals from multi-source pipelines and publishing AI-generated outbreak reports.</p>
+                    <div class="hidden md:flex md:col-span-2 justify-center relative md:order-2">
+                        <div class="w-px h-full bg-white/10 absolute top-0 bottom-0"></div>
+                        <div class="w-4 h-4 rounded-full bg-bio-400 absolute top-1/2 -translate-y-1/2 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+                    </div>
+                    <div class="md:col-span-4 text-left md:order-3 order-1">
+                        <div class="text-bio-400 font-bold tracking-widest uppercase mb-2">2025 — Present</div>
+                        <h3 class="text-white font-display text-2xl font-bold">BEACON</h3>
                     </div>
                 </div>
 
-                <!-- New Caledonia Gov -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-ocean-400 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="fa-solid fa-building-user"></i>
+                <!-- New Cal Gov -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center reveal">
+                    <div class="md:col-span-4 text-left md:text-right">
+                        <div class="text-gray-500 font-bold tracking-widest uppercase mb-2">2018 — 2022</div>
+                        <h3 class="text-white font-display text-2xl font-bold">New Caledonia Government</h3>
                     </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-2xl">
-                        <div class="flex flex-col mb-2">
-                            <span class="text-ocean-600 font-bold text-sm uppercase">2018 - 2022</span>
-                            <h3 class="font-bold text-xl text-ocean-900">Public Health Officer</h3>
-                            <span class="text-gray-500 text-sm font-medium">New Caledonia Government</span>
-                        </div>
-                        <p class="text-gray-600 text-sm">Supported COVID-19 response via data collection systems, dashboards, and the Health Pass. Developed visualization tools and algorithms to identify at-risk populations.</p>
+                    <div class="hidden md:flex md:col-span-2 justify-center relative">
+                        <div class="w-px h-full bg-white/10 absolute top-0 bottom-0"></div>
+                        <div class="w-4 h-4 rounded-full bg-gray-500 absolute top-1/2 -translate-y-1/2"></div>
+                    </div>
+                    <div class="md:col-span-6 glass-card-dark p-8 md:p-10 rounded-2xl hover-trigger">
+                        <h4 class="text-xl text-white font-bold mb-4">Public Health Officer</h4>
+                        <p class="text-gray-400 leading-relaxed text-sm md:text-base">Supported COVID-19 response via data collection systems, dashboards, and the Health Pass. Conducted health expenditure analysis and developed algorithms to identify populations at risk of cardiovascular disease.</p>
                     </div>
                 </div>
 
@@ -281,201 +330,157 @@
         </div>
     </section>
 
-    <!-- Gen AI Course Section -->
-    <section id="course" class="py-20 relative overflow-hidden">
-        <!-- Background accents -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-ocean-100 opacity-50 blur-3xl -z-10"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-bio-100 opacity-50 blur-3xl -z-10"></div>
-
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-br from-ocean-900 to-ocean-800 rounded-3xl shadow-2xl overflow-hidden text-white">
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center">
-                        <div class="inline-flex items-center bg-white/10 rounded-full px-4 py-1.5 mb-6 w-max border border-white/20">
-                            <i class="fa-solid fa-graduation-cap text-ocean-400 mr-2"></i>
-                            <span class="text-sm font-medium tracking-wide">Current Endeavor</span>
+    <!-- Gen AI Course Banner Section -->
+    <section id="course" class="py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="relative rounded-3xl overflow-hidden glass-card-dark border-accent-500/30">
+                <!-- Inner Glow -->
+                <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-accent-500/20 via-transparent to-bio-500/10 pointer-events-none"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-12 md:p-20 flex flex-col justify-center relative z-10">
+                        <div class="inline-flex items-center space-x-2 text-bio-400 text-xs tracking-widest uppercase font-bold mb-6">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Current Endeavor</span>
                         </div>
-                        <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">Generative AI for <br><span class="text-ocean-400">Work & Research</span></h2>
-                        <p class="text-ocean-100 mb-8 text-lg leading-relaxed">
-                            A deep dive into harnessing the power of Large Language Models and generative technologies. As an epidemic intelligence innovator, I am utilizing this course to explore novel ways AI can synthesize complex health data, automate surveillance reports, and act as a force multiplier in public health contexts.
+                        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                            Generative AI for <br><span class="text-accent-400">Work & Research</span>
+                        </h2>
+                        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                            A deep dive into harnessing Large Language Models. Utilizing this platform to explore novel ways AI can synthesize unstructured health data, automate surveillance reports, and act as a force multiplier in epidemiology.
                         </p>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-center text-ocean-100"><i class="fa-solid fa-check text-bio-500 mr-3"></i> Prompt Engineering Mastery</li>
-                            <li class="flex items-center text-ocean-100"><i class="fa-solid fa-check text-bio-500 mr-3"></i> Automated Data Analysis Workflows</li>
-                            <li class="flex items-center text-ocean-100"><i class="fa-solid fa-check text-bio-500 mr-3"></i> Applied AI in Epidemiology</li>
-                        </ul>
-                    </div>
-                    <div class="md:w-1/2 bg-ocean-950 relative overflow-hidden flex items-center justify-center p-10">
-                        <!-- Abstract AI/Brain/Network Graphic -->
-                        <div class="relative w-64 h-64 md:w-80 md:h-80">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-ocean-400 to-bio-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-                            <div class="absolute inset-0 border-2 border-white/20 rounded-full border-dashed animate-[spin_20s_linear_infinite]"></div>
-                            <div class="absolute inset-4 border border-ocean-400/50 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fa-solid fa-microchip text-7xl text-white drop-shadow-[0_0_15px_rgba(87,197,182,0.8)]"></i>
-                            </div>
+                        <div class="space-y-4 text-sm font-medium text-gray-300">
+                            <div class="flex items-center"><span class="w-6 h-px bg-accent-400 mr-4"></span> Prompt Engineering Mastery</div>
+                            <div class="flex items-center"><span class="w-6 h-px bg-accent-400 mr-4"></span> Automated Data Analysis</div>
+                            <div class="flex items-center"><span class="w-6 h-px bg-accent-400 mr-4"></span> Applied AI in Public Health</div>
                         </div>
+                    </div>
+                    
+                    <!-- Tech Visualization -->
+                    <div class="relative bg-black/40 min-h-[300px] md:min-h-full flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 border-[1px] border-accent-400/20 rounded-full w-[200%] h-[200%] -left-1/2 -top-1/2 animate-[spin_40s_linear_infinite] border-dashed"></div>
+                        <div class="absolute inset-0 border-[1px] border-bio-400/20 rounded-full w-[150%] h-[150%] -left-1/4 -top-1/4 animate-[spin_30s_linear_infinite_reverse]"></div>
+                        <i class="fa-solid fa-microchip text-8xl text-white drop-shadow-[0_0_30px_rgba(56,189,248,0.8)] relative z-10 hover-trigger hover:scale-110 transition-transform duration-500"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Weekly Submissions Grid -->
-    <section id="submissions" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-ocean-900 mb-4">Course Portfolio</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">A repository of my weekly explorations, projects, and insights bridging Generative AI with Public Health Surveillance.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Week 1 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="h-3 bg-gradient-to-r from-ocean-400 to-ocean-600"></div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-ocean-100 text-ocean-800 text-xs font-bold px-3 py-1 rounded-full">Week 1</span>
-                            <i class="fa-regular fa-folder-open text-gray-400 group-hover:text-ocean-500 transition-colors"></i>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-2 group-hover:text-ocean-600 transition-colors">Foundations of LLMs</h3>
-                        <p class="text-gray-500 text-sm mb-6">Exploring the architecture of Generative AI and initial brainstorming on applications for event-based surveillance.</p>
-                        <a href="#" class="inline-flex items-center text-ocean-600 font-semibold text-sm hover:text-ocean-800 transition-colors">
-                            View Submission <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Week 2 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="h-3 bg-gradient-to-r from-ocean-400 to-ocean-600"></div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-ocean-100 text-ocean-800 text-xs font-bold px-3 py-1 rounded-full">Week 2</span>
-                            <i class="fa-regular fa-folder-open text-gray-400 group-hover:text-ocean-500 transition-colors"></i>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-2 group-hover:text-ocean-600 transition-colors">Prompt Engineering</h3>
-                        <p class="text-gray-500 text-sm mb-6">Designing advanced prompts to synthesize unstructured health data into structured epidemiological reports.</p>
-                        <a href="#" class="inline-flex items-center text-ocean-600 font-semibold text-sm hover:text-ocean-800 transition-colors">
-                            View Submission <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Week 3 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="h-3 bg-gradient-to-r from-ocean-400 to-ocean-600"></div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">Week 3</span>
-                            <i class="fa-regular fa-clock text-gray-400"></i>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-2">Automated Dashboards</h3>
-                        <p class="text-gray-500 text-sm mb-6">Pending submission. Integrating AI analysis with tools like PowerBI and R Studio for dynamic visualization.</p>
-                        <span class="inline-flex items-center text-gray-400 font-semibold text-sm cursor-not-allowed">
-                            Coming Soon
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Week 4 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="h-3 bg-gray-200"></div>
-                    <div class="p-6 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">Week 4</span>
-                            <i class="fa-solid fa-lock text-gray-400"></i>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-2">Capstone Project Draft</h3>
-                        <p class="text-gray-500 text-sm mb-6">To be unlocked. Final project focusing on AI integration at SPC.</p>
-                        <span class="inline-flex items-center text-gray-400 font-semibold text-sm cursor-not-allowed">
-                            Locked
-                        </span>
-                    </div>
-                </div>
-                 <!-- Week 5 -->
-                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="h-3 bg-gray-200"></div>
-                    <div class="p-6 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">Week 5</span>
-                            <i class="fa-solid fa-lock text-gray-400"></i>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-2">Ethics & Data Privacy</h3>
-                        <p class="text-gray-500 text-sm mb-6">To be unlocked. Navigating the ethical considerations of AI in health data.</p>
-                        <span class="inline-flex items-center text-gray-400 font-semibold text-sm cursor-not-allowed">
-                            Locked
-                        </span>
-                    </div>
-                </div>
-                 <!-- Week 6 -->
-                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="h-3 bg-gray-200"></div>
-                    <div class="p-6 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">Week 6</span>
-                            <i class="fa-solid fa-lock text-gray-400"></i>
-                        </div>
-                        <h3 class="font-bold text-xl text-gray-900 mb-2">Final Presentation</h3>
-                        <p class="text-gray-500 text-sm mb-6">To be unlocked. Final showcase of the comprehensive AI workflow.</p>
-                        <span class="inline-flex items-center text-gray-400 font-semibold text-sm cursor-not-allowed">
-                            Locked
-                        </span>
-                    </div>
+    <!-- Submissions / Portfolio Grid -->
+    <section id="submissions" class="py-32 relative z-10 bg-surface2 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="font-display text-5xl font-bold text-white mb-4">COURSE PORTFOLIO</h2>
+                    <p class="text-gray-400 max-w-xl">A repository of weekly explorations bridging Generative AI with Public Health Surveillance.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Comments Section -->
-    <section id="comments" class="py-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-                <div class="bg-ocean-900 p-8 text-white">
-                    <h2 class="text-3xl font-bold mb-2">Join the Discussion</h2>
-                    <p class="text-ocean-100 text-sm">Leave your thoughts, questions, or feedback on my GenAI coursework and public health projects.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card-dark p-8 rounded-2xl group reveal hover-trigger">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-bold tracking-widest uppercase text-accent-400">Week 01</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-accent-400 transition-colors">Foundations of LLMs</h3>
+                    <p class="text-gray-400 text-sm">Exploring architecture of Generative AI and initial brainstorming on applications for event-based surveillance.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card-dark p-8 rounded-2xl group reveal reveal-delay-1 hover-trigger">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-bold tracking-widest uppercase text-accent-400">Week 02</span>
+                        <i class="fa-solid fa-arrow-right -rotate-45 text-gray-600 group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-accent-400 transition-colors">Prompt Engineering</h3>
+                    <p class="text-gray-400 text-sm">Designing advanced prompts to synthesize unstructured health data into structured epidemiological reports.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card-dark p-8 rounded-2xl group reveal reveal-delay-2 hover-trigger relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white font-display font-bold tracking-widest uppercase text-sm border border-white/20 px-4 py-2 rounded-full">Coming Soon</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-bold tracking-widest uppercase text-gray-500">Week 03</span>
+                        <i class="fa-regular fa-clock text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-gray-300 mb-3">Automated Dashboards</h3>
+                    <p class="text-gray-500 text-sm">Integrating AI analysis with tools like PowerBI and R Studio for dynamic visualization.</p>
                 </div>
                 
-                <div class="p-8">
-                    <!-- Comment Form -->
-                    <form id="comment-form" class="mb-10">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-400 focus:border-ocean-400 outline-none transition-all" placeholder="Dr. Jane Doe">
-                            </div>
-                            <div>
-                                <label for="affiliation" class="block text-sm font-medium text-gray-700 mb-2">Affiliation (Optional)</label>
-                                <input type="text" id="affiliation" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-400 focus:border-ocean-400 outline-none transition-all" placeholder="e.g. WHO, SPC, University...">
-                            </div>
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Comment</label>
-                            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-400 focus:border-ocean-400 outline-none transition-all resize-none" placeholder="Your insights here..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full md:w-auto bg-ocean-600 hover:bg-ocean-800 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-md">
-                            Post Comment <i class="fa-regular fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
+                <!-- Cards 4-6 Locked -->
+                <div class="glass-card-dark p-8 rounded-2xl opacity-40 hover:opacity-100 transition-opacity reveal">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-bold tracking-widest uppercase text-gray-500">Week 04</span>
+                        <i class="fa-solid fa-lock text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-gray-300 mb-3">Capstone Draft</h3>
+                    <p class="text-gray-500 text-sm">To be unlocked. Final project focusing on AI integration at SPC.</p>
+                </div>
+                <div class="glass-card-dark p-8 rounded-2xl opacity-40 hover:opacity-100 transition-opacity reveal reveal-delay-1">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-bold tracking-widest uppercase text-gray-500">Week 05</span>
+                        <i class="fa-solid fa-lock text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-gray-300 mb-3">Ethics & Privacy</h3>
+                    <p class="text-gray-500 text-sm">Navigating the ethical considerations of AI in health data.</p>
+                </div>
+                <div class="glass-card-dark p-8 rounded-2xl opacity-40 hover:opacity-100 transition-opacity reveal reveal-delay-2">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="text-xs font-bold tracking-widest uppercase text-gray-500">Week 06</span>
+                        <i class="fa-solid fa-lock text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-gray-300 mb-3">Final Showcase</h3>
+                    <p class="text-gray-500 text-sm">Final showcase of the comprehensive AI workflow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <!-- Divider -->
-                    <div class="border-t border-gray-100 my-8"></div>
+    <!-- Community Comments Section -->
+    <section id="comments" class="py-32 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">INITIALIZE COMM-LINK</h2>
+                <p class="text-gray-400">Leave your thoughts or feedback on my GenAI coursework.</p>
+            </div>
 
-                    <!-- Comments Display -->
-                    <div id="comments-list" class="space-y-6">
-                        <!-- Default Seeded Comment -->
-                        <div class="flex gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
-                            <div class="w-12 h-12 bg-bio-500 rounded-full flex items-center justify-center text-white font-bold text-xl shrink-0 shadow-sm">
-                                A
+            <div class="glass-card-dark rounded-3xl p-8 md:p-12 reveal border border-white/5">
+                <form id="comment-form" class="mb-16">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <input type="text" id="name" required class="w-full bg-transparent border-b border-gray-700 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-accent-400 transition-colors hover-trigger" placeholder="Designation (Name)">
+                        </div>
+                        <div>
+                            <input type="text" id="affiliation" class="w-full bg-transparent border-b border-gray-700 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-accent-400 transition-colors hover-trigger" placeholder="Affiliation (Optional)">
+                        </div>
+                    </div>
+                    <div class="mb-10">
+                        <textarea id="message" rows="1" required class="w-full bg-transparent border-b border-gray-700 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-accent-400 transition-colors resize-none hover-trigger" placeholder="Transmit message..."></textarea>
+                    </div>
+                    <button type="submit" class="group relative px-8 py-3 bg-transparent text-white font-display font-bold tracking-wider uppercase overflow-hidden border border-white/20 hover-trigger w-full md:w-auto text-center">
+                        <span class="relative z-10 transition-colors group-hover:text-black">Transmit Data</span>
+                        <div class="absolute inset-0 bg-white transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0"></div>
+                    </button>
+                </form>
+
+                <div class="border-t border-white/10 my-10"></div>
+
+                <div id="comments-list" class="space-y-8">
+                    <!-- Seeded Comment -->
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 bg-surface border border-white/10 rounded-full flex items-center justify-center text-accent-400 font-display font-bold text-xl shrink-0">
+                            A
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <h4 class="font-bold text-white font-display">Alex Researcher</h4>
+                                <span class="text-[10px] tracking-widest uppercase text-gray-500 border border-white/10 px-2 py-1 rounded">Univ. of Sydney</span>
                             </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h4 class="font-bold text-gray-900">Alex Researcher</h4>
-                                    <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">University of Sydney</span>
-                                </div>
-                                <p class="text-sm text-gray-500 mb-2">Just now</p>
-                                <p class="text-gray-700">Fascinating to see how you are applying LLMs to event-based surveillance in the Pacific. Looking forward to your Week 3 dashboard submission!</p>
-                            </div>
+                            <p class="text-gray-400 leading-relaxed text-sm">Fascinating to see how you are applying LLMs to event-based surveillance in the Pacific. Clean interface. Looking forward to your dashboard submission!</p>
                         </div>
                     </div>
                 </div>
@@ -484,78 +489,110 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-ocean-950 py-12 text-center text-ocean-100">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-2xl font-heading font-bold text-white mb-4">TD<span class="text-ocean-400">.</span></div>
-            <p class="mb-6 text-sm">Surveillance and Research Officer | Innovator in Public Health & AI</p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="#" class="text-ocean-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
-                <a href="#" class="text-ocean-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
-                <a href="#" class="text-ocean-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
+    <footer class="bg-surface py-12 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-2xl font-display font-bold text-white mb-4 md:mb-0 hover-trigger">TD<span class="text-accent-400">.</span></div>
+            <p class="text-gray-600 text-xs tracking-widest uppercase">&copy; 2026 THIBAUT DEMANEUF — GENAI FOR WORK & RESEARCH</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="text-gray-500 hover:text-white transition-colors hover-trigger"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors hover-trigger"><i class="fa-brands fa-github"></i></a>
             </div>
-            <p class="text-xs text-ocean-600">&copy; 2026 Thibaut Demaneuf. Built for "Generative AI for Work & Research". Email omitted for spam protection.</p>
         </div>
     </footer>
 
-    <!-- Interactive Chatbot -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <!-- Sleek Chatbot Assistant -->
+    <div class="fixed bottom-8 right-8 z-50 flex flex-col items-end">
         
         <!-- Chat Window -->
-        <div id="chatbot-window" class="chat-hidden mb-4 bg-white w-80 sm:w-96 rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col h-[450px]">
+        <div id="chatbot-window" class="chat-hidden mb-6 bg-surface2 w-80 sm:w-96 rounded-2xl shadow-2xl border border-white/10 overflow-hidden flex flex-col h-[450px]">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-ocean-800 to-ocean-600 p-4 text-white flex justify-between items-center shadow-md z-10">
+            <div class="bg-black/40 backdrop-blur-md p-5 border-b border-white/5 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border-2 border-ocean-400">
-                        <i class="fa-solid fa-robot text-ocean-800 text-lg"></i>
-                    </div>
+                    <div class="w-2 h-2 rounded-full bg-accent-400 animate-pulse shadow-[0_0_10px_rgba(56,189,248,1)]"></div>
                     <div>
-                        <h4 class="font-bold text-sm">Epi-Bot Assistant</h4>
-                        <p class="text-xs text-ocean-100">Ask about Thibaut or the course</p>
+                        <h4 class="font-display font-bold text-white text-sm tracking-wider uppercase">Epi-Bot v1.0</h4>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="text-ocean-100 hover:text-white transition-colors">
-                    <i class="fa-solid fa-xmark text-xl"></i>
+                <button onclick="toggleChat()" class="text-gray-500 hover:text-white transition-colors hover-trigger">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
             
             <!-- Chat Body -->
-            <div id="chat-body" class="flex-1 p-4 overflow-y-auto bg-gray-50 flex flex-col gap-4">
-                <!-- Greeting -->
-                <div class="message-in flex items-start gap-2 max-w-[85%]">
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100 text-sm text-gray-700">
-                        Bula and Hello! 👋 I'm Thibaut's digital assistant. You can ask me about his <strong>experience</strong>, <strong>education</strong>, or the <strong>Generative AI course</strong>!
+            <div id="chat-body" class="flex-1 p-5 overflow-y-auto flex flex-col gap-4 custom-scrollbar">
+                <div class="message-in flex items-start max-w-[90%]">
+                    <div class="bg-white/5 border border-white/10 p-4 rounded-xl rounded-tl-sm text-sm text-gray-300 leading-relaxed font-light">
+                        System initialized. I am the digital proxy for Thibaut. Query me regarding his <span class="text-white font-medium">experience</span>, <span class="text-white font-medium">education</span>, or this <span class="text-white font-medium">GenAI course</span>.
                     </div>
                 </div>
             </div>
 
             <!-- Input Area -->
-            <div class="p-3 bg-white border-t border-gray-100 flex gap-2">
-                <input type="text" id="chat-input" class="flex-1 bg-gray-100 border-none rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-400" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
-                <button onclick="sendChatMessage()" class="w-10 h-10 bg-ocean-600 hover:bg-ocean-800 text-white rounded-full flex items-center justify-center transition-colors shadow-sm">
-                    <i class="fa-solid fa-paper-plane text-sm -ml-0.5"></i>
+            <div class="p-4 bg-black/40 border-t border-white/5 flex gap-3">
+                <input type="text" id="chat-input" class="flex-1 bg-transparent border border-gray-700 rounded-full px-5 py-2.5 text-sm text-white focus:outline-none focus:border-accent-400 transition-colors hover-trigger" placeholder="Command..." onkeypress="handleChatEnter(event)">
+                <button onclick="sendChatMessage()" class="w-10 h-10 bg-white text-black hover:bg-accent-400 hover:text-white rounded-full flex items-center justify-center transition-colors hover-trigger">
+                    <i class="fa-solid fa-arrow-up text-sm"></i>
                 </button>
             </div>
         </div>
 
         <!-- Toggle Button -->
-        <button onclick="toggleChat()" class="w-16 h-16 bg-ocean-600 hover:bg-ocean-700 text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 border-4 border-white">
-            <i class="fa-solid fa-message text-2xl"></i>
+        <button onclick="toggleChat()" class="w-14 h-14 bg-surface2 border border-white/20 hover:border-accent-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] text-white rounded-full flex items-center justify-center transition-all hover-trigger backdrop-blur-sm">
+            <i class="fa-solid fa-terminal text-lg"></i>
         </button>
     </div>
 
-    <!-- JavaScript Logic for Interactivity -->
+    <!-- Interactive Scripts -->
     <script>
-        // Navbar scroll effect
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            cursorOutline.style.left = `${posX}px`;
+            cursorOutline.style.top = `${posY}px`;
+        });
+
+        // Scroll Reveal Logic (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: stop observing once revealed
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Navbar blur on scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                nav.classList.add('bg-ocean-900/95', 'backdrop-blur-sm', 'shadow-lg');
+                nav.classList.add('bg-surface2/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+                nav.classList.remove('mix-blend-difference');
             } else {
-                nav.classList.remove('bg-ocean-900/95', 'backdrop-blur-sm', 'shadow-lg');
+                nav.classList.remove('bg-surface2/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+                nav.classList.add('mix-blend-difference');
             }
         });
 
-        // --- Comments Logic (In-Memory) ---
+        // --- Comments Logic ---
         const commentForm = document.getElementById('comment-form');
         const commentsList = document.getElementById('comments-list');
 
@@ -564,35 +601,27 @@
             const name = document.getElementById('name').value;
             const affiliation = document.getElementById('affiliation').value;
             const message = document.getElementById('message').value;
-
-            // Create initial letter avatar
             const initial = name.charAt(0).toUpperCase();
 
-            // Construct HTML for new comment
             const commentHTML = `
-                <div class="message-in flex gap-4 p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
-                    <div class="w-12 h-12 bg-ocean-600 rounded-full flex items-center justify-center text-white font-bold text-xl shrink-0 shadow-sm">
+                <div class="message-in flex gap-6">
+                    <div class="w-12 h-12 bg-accent-500/20 border border-accent-500/50 rounded-full flex items-center justify-center text-accent-400 font-display font-bold text-xl shrink-0">
                         ${initial}
                     </div>
                     <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <h4 class="font-bold text-gray-900">${name}</h4>
-                            ${affiliation ? `<span class="text-xs bg-ocean-50 text-ocean-700 px-2 py-0.5 rounded-full border border-ocean-100">${affiliation}</span>` : ''}
+                        <div class="flex items-center gap-3 mb-2">
+                            <h4 class="font-bold text-white font-display">${name}</h4>
+                            ${affiliation ? `<span class="text-[10px] tracking-widest uppercase text-gray-400 border border-white/10 px-2 py-1 rounded">${affiliation}</span>` : ''}
                         </div>
-                        <p class="text-sm text-gray-400 mb-2">Just now</p>
-                        <p class="text-gray-700 whitespace-pre-wrap">${message}</p>
+                        <p class="text-gray-300 leading-relaxed text-sm whitespace-pre-wrap">${message}</p>
                     </div>
                 </div>
             `;
-
-            // Insert at the top of the list
             commentsList.insertAdjacentHTML('afterbegin', commentHTML);
-            
-            // Reset form
             commentForm.reset();
         });
 
-        // --- Chatbot Logic (Keyword based simulation) ---
+        // --- Chatbot Logic ---
         const chatWindow = document.getElementById('chatbot-window');
         const chatBody = document.getElementById('chat-body');
         const chatInput = document.getElementById('chat-input');
@@ -611,20 +640,16 @@
         }
 
         function handleChatEnter(e) {
-            if (e.key === 'Enter') {
-                sendChatMessage();
-            }
+            if (e.key === 'Enter') sendChatMessage();
         }
 
         function sendChatMessage() {
             const text = chatInput.value.trim();
             if (!text) return;
 
-            // Add user message
             addMessageToChat(text, 'user');
             chatInput.value = '';
 
-            // Simulate typing delay then respond
             setTimeout(() => {
                 const response = getBotResponse(text.toLowerCase());
                 addMessageToChat(response, 'bot');
@@ -633,47 +658,24 @@
 
         function addMessageToChat(text, sender) {
             const isUser = sender === 'user';
-            
             const msgDiv = document.createElement('div');
-            msgDiv.className = `message-in flex items-start gap-2 max-w-[85%] ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
+            msgDiv.className = `message-in flex items-start max-w-[90%] ${isUser ? 'ml-auto justify-end' : ''}`;
             
             const bubbleClasses = isUser 
-                ? 'bg-ocean-600 text-white rounded-2xl rounded-tr-sm p-3 shadow-sm text-sm'
-                : 'bg-white border border-gray-100 text-gray-700 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm';
+                ? 'bg-accent-500 text-white rounded-xl rounded-tr-sm p-3 text-sm font-light'
+                : 'bg-white/5 border border-white/10 text-gray-300 rounded-xl rounded-tl-sm p-3 text-sm font-light leading-relaxed';
             
-            msgDiv.innerHTML = `
-                ${!isUser ? `<div class="w-6 h-6 rounded-full bg-bio-100 flex items-center justify-center shrink-0 border border-bio-200 mt-1"><i class="fa-solid fa-robot text-bio-600 text-[10px]"></i></div>` : ''}
-                <div class="${bubbleClasses}">${text}</div>
-            `;
-            
+            msgDiv.innerHTML = `<div class="${bubbleClasses}">${text}</div>`;
             chatBody.appendChild(msgDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         function getBotResponse(input) {
-            if (input.includes('experience') || input.includes('work') || input.includes('job')) {
-                return "Thibaut has been a Surveillance and Research Officer at the Pacific Community (SPC) since 2022. He also currently works as an Outbreak Analyst for BEACON. Previously, he was a Public Health Officer for the New Caledonia Government.";
-            }
-            if (input.includes('education') || input.includes('degree') || input.includes('study') || input.includes('university')) {
-                return "He holds a Master of Science in Epidemiology from the University of Melbourne, and both a Bachelor of Biomedical Sciences (with Honours) and a Graduate Diploma of Business from Bond University.";
-            }
-            if (input.includes('course') || input.includes('genai') || input.includes('ai')) {
-                return "This site is a portfolio for the 'Generative AI for Work & Research' course! Thibaut is exploring how LLMs can automate epidemic intelligence, synthesize health data, and create rapid surveillance reports.";
-            }
-            if (input.includes('skills') || input.includes('tool')) {
-                return "His core technical skills include R Studio, Power BI, Looker Studio, and Data Mining. He's also trained in Field Epidemiology and Agile Project Management.";
-            }
-            if (input.includes('contact') || input.includes('email')) {
-                return "To avoid spam, his email isn't displayed directly here, but you can leave a comment in the community section or connect with him via professional networks!";
-            }
-            if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
-                return "Hello! How can I help you learn more about Thibaut's work in public health and AI?";
-            }
-            if (input.includes('spc') || input.includes('pacific community')) {
-                 return "At SPC, he designs epidemic intelligence systems integrating multi-source data and AI for rapid signal detection, strengthening pandemic preparedness across the Pacific.";
-            }
-
-            return "That's an interesting question! While I'm just a simple bot, Thibaut is constantly utilizing AI to better answer complex public health queries. Try asking me about his 'experience', 'education', or the 'Generative AI course'.";
+            if (input.includes('experience') || input.includes('work')) return "Data indicates Thibaut serves as Surveillance & Research Officer at SPC (2022-Present) and Outbreak Analyst for BEACON (2025-Present). Past role: Public Health Officer for New Caledonia Gov.";
+            if (input.includes('education') || input.includes('degree')) return "Credentials verified: MSc in Epidemiology (University of Melbourne), Bachelor of Biomedical Sciences with Honours (Bond University).";
+            if (input.includes('course') || input.includes('genai')) return "Current objective: Mastering Generative AI for Work & Research to automate epidemic intelligence and synthesize unstructured health data via LLMs.";
+            if (input.includes('skills')) return "Core stack: R Studio, Power BI, Looker Studio, Data Mining, Agile PM, Field Epidemiology.";
+            return "Query not recognized in current parameters. Try querying 'experience', 'education', or 'GenAI course'.";
         }
     </script>
 </body>
