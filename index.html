@@ -213,6 +213,12 @@
         .chat-visible { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
         .message-in { animation: slideIn 0.3s ease-out forwards; opacity: 0; transform: translateY(10px); }
         @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Consultation Form Embed Styles --- */
+        /* The custom cursor is hidden inside the embedded form so the form is usable */
+        .consult-frame:hover ~ .cursor-dot,
+        .consult-frame:hover ~ .cursor-outline { opacity: 0; }
+        .consult-frame iframe { color-scheme: light; }
     </style>
 </head>
 <body class="antialiased intro-active select-none md:select-auto">
@@ -286,6 +292,7 @@
                     <a href="#experience" class="text-gray-300 hover:text-white transition-colors hover-trigger">Experience</a>
                     <a href="#course" class="text-gray-300 hover:text-white transition-colors hover-trigger">GenAI</a>
                     <a href="#submissions" class="text-gray-300 hover:text-white transition-colors hover-trigger">Portfolio</a>
+                    <a href="#consultation" class="text-gray-300 hover:text-white transition-colors hover-trigger">Contact</a>
                 </div>
             </div>
         </nav>
@@ -734,6 +741,58 @@
             </div>
         </section>
 
+        <!-- Contact for Consultation Section -->
+        <section id="consultation" class="py-32 relative z-10 bg-surface2 border-t border-white/5">
+            <div class="max-w-4xl mx-auto px-6 md:px-12">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-sm tracking-widest text-bio-400 uppercase mb-4">Engage</h2>
+                    <h3 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">CONTACT FOR CONSULTATION</h3>
+                    <p class="text-gray-400 max-w-xl mx-auto">Looking to integrate AI into your surveillance, epidemic intelligence, or public health workflows? Send a consultation request below and I'll be in touch.</p>
+                </div>
+
+                <div class="reveal reveal-delay-1">
+                    <!-- Glass frame wrapping the embedded Google Form -->
+                    <div class="glass-card-dark rounded-3xl p-3 md:p-5 border border-white/5 shadow-[0_0_60px_rgba(14,165,233,0.08)] relative overflow-hidden hover:transform-none">
+                        <!-- Inner accent glow -->
+                        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-accent-500/5 via-transparent to-bio-500/5 pointer-events-none rounded-3xl"></div>
+
+                        <!-- Decorative channel header bar -->
+                        <div class="flex items-center gap-2 px-3 py-3 relative z-10">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-bio-500/70"></span>
+                            <span class="ml-3 text-[10px] font-display tracking-widest uppercase text-gray-500 flex items-center gap-2">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-bio-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-bio-500"></span>
+                                </span>
+                                Secure Consultation Channel
+                            </span>
+                        </div>
+
+                        <!-- The embedded Google Form -->
+                        <div class="consult-frame rounded-2xl overflow-hidden bg-white relative z-10">
+                            <iframe
+                                src="https://docs.google.com/forms/d/e/1FAIpQLScLLb_xYMx29IJUUGaeE-c9TVhrDaDmh-Jh0fnQn655cIcYeA/viewform?embedded=true"
+                                title="Consultation Request Form"
+                                class="w-full block"
+                                style="height: 824px; border: 0; cursor: auto;"
+                                loading="lazy"
+                                frameborder="0"
+                                marginheight="0"
+                                marginwidth="0">
+                                Loading…
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <p class="text-center text-gray-600 text-xs tracking-widest uppercase mt-6">
+                        <i class="fa-solid fa-lock text-bio-400 mr-2"></i> Responses are collected securely via Google Forms
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="bg-surface py-12 border-t border-white/5 relative z-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center">
@@ -1036,7 +1095,8 @@
             if (input.includes('education') || input.includes('degree')) return "Credentials verified: MSc in Epidemiology (University of Melbourne), Bachelor of Biomedical Sciences with Honours (Bond University).";
             if (input.includes('course') || input.includes('genai')) return "Current objective: Mastering Generative AI for Work & Research to automate epidemic intelligence and synthesize unstructured health data via LLMs.";
             if (input.includes('skills')) return "Core stack: R Studio, Power BI, Looker Studio, Data Mining, Agile PM, Field Epidemiology.";
-            return "Query not recognized in current parameters. Try querying 'experience', 'education', or 'GenAI course'.";
+            if (input.includes('contact') || input.includes('consult') || input.includes('hire')) return "To request a consultation, scroll to the 'Contact for Consultation' section and submit the secure form.";
+            return "Query not recognized in current parameters. Try querying 'experience', 'education', 'GenAI course', or 'contact'.";
         }
     </script>
 </body>
