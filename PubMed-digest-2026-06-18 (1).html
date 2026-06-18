@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PubMed Signal Digest — Week of 18 Jun 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13242B;
+    --ink-soft:#41534A;
+    --paper:#EBEEE8;
+    --surface:#FCFCF9;
+    --accent:#D34F38;
+    --accent-deep:#A93A27;
+    --teal:#27726C;
+    --teal-soft:#DBEAE6;
+    --line:#D3D9CF;
+    --line-soft:#E2E6DC;
+    --mut:#6B7A72;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Spectral",Georgia,serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 80px;}
+
+  .mast{
+    position:relative;
+    overflow:hidden;
+    margin:0 -22px 0;
+    padding:46px 22px 34px;
+    background:var(--ink);
+    color:#EFF2EC;
+    border-bottom:3px solid var(--accent);
+  }
+  .mast .rings{
+    position:absolute;
+    right:-120px;top:50%;transform:translateY(-50%);
+    width:520px;height:520px;opacity:.16;pointer-events:none;
+  }
+  .mast-inner{position:relative;max-width:880px;margin:0 auto;}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:#9DBDB4;margin:0 0 18px;
+    display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+  }
+  .eyebrow .dot{color:var(--accent);}
+  .mast h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:600;font-size:33px;line-height:1.08;
+    letter-spacing:-.015em;margin:0 0 14px;color:#FBFCF8;
+    max-width:18ch;
+  }
+  .mast h1 em{font-style:normal;color:var(--accent);}
+  .mast-sub{
+    font-size:15px;color:#C6D2CB;margin:0;max-width:54ch;font-style:italic;
+  }
+  .mast-meta{
+    margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.13);
+    display:flex;flex-wrap:wrap;gap:6px 34px;
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;color:#8FA89F;
+  }
+  .mast-meta b{color:#D7E1DA;font-weight:500;}
+
+  .shead{
+    display:flex;align-items:baseline;gap:14px;
+    margin:48px 0 6px;
+  }
+  .shead .num{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);
+    letter-spacing:.1em;
+  }
+  .shead h2{
+    font-family:"Space Grotesk",sans-serif;font-weight:600;
+    font-size:19px;letter-spacing:-.01em;margin:0;color:var(--ink);
+  }
+  .shead .rule{flex:1;height:1px;background:var(--line);align-self:center;}
+  .scount{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--mut);
+  }
+
+  .feed{margin-top:22px;display:flex;flex-direction:column;gap:14px;}
+  .sig{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:20px 22px 18px 20px;
+    display:grid;grid-template-columns:46px 1fr;gap:0 18px;
+    transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+  .sig:hover{
+    border-color:#BFC8BD;
+    box-shadow:0 6px 22px -14px rgba(19,36,43,.4);
+    transform:translateY(-1px);
+  }
+  .sig.prio{border-left:3px solid var(--accent);padding-left:18px;}
+  .sig .idx{
+    font-family:"IBM Plex Mono",monospace;font-weight:500;
+    font-size:13px;color:var(--mut);padding-top:3px;
+  }
+  .sig .body{min-width:0;}
+  .sig .tagrow{
+    display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:9px;
+  }
+  .pmid{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.03em;
+    color:var(--teal);background:var(--teal-soft);
+    padding:2px 8px;border-radius:2px;
+  }
+  .tag{
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:2px;padding:2px 7px;
+  }
+  .flag{
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:#fff;background:var(--accent);
+    padding:2px 8px;border-radius:2px;font-weight:500;
+  }
+  .sig h3{
+    font-family:"Space Grotesk",sans-serif;font-weight:500;
+    font-size:17px;line-height:1.28;letter-spacing:-.01em;
+    margin:0 0 7px;color:var(--ink);
+  }
+  .sig p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-soft);}
+  .note{
+    margin-top:11px;padding:9px 12px 9px 14px;
+    border-left:2px solid var(--accent);
+    background:#FBF1EE;border-radius:0 2px 2px 0;
+    font-size:13.5px;line-height:1.5;color:var(--accent-deep);
+  }
+  .note b{font-family:"Space Grotesk",sans-serif;font-weight:600;font-style:normal;}
+  .readlink{
+    display:inline-block;margin-top:12px;
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.02em;
+    color:var(--teal);text-decoration:none;border-bottom:1px solid var(--teal-soft);
+    padding-bottom:1px;transition:border-color .15s,color .15s;
+  }
+  .readlink:hover{color:var(--accent);border-color:var(--accent);}
+
+  .read{
+    margin-top:22px;background:var(--ink);color:#E7ECE5;
+    border-radius:4px;padding:30px 30px 26px;
+  }
+  .read .ar-eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:#9DBDB4;margin:0 0 4px;
+  }
+  .read h2{
+    font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:21px;
+    margin:0 0 18px;color:#FBFCF8;letter-spacing:-.01em;
+  }
+  .ar-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;}
+  .ar{padding-left:15px;border-left:2px solid var(--accent);}
+  .ar h4{
+    font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14px;
+    margin:0 0 5px;color:#FBFCF8;
+  }
+  .ar .ar-ref{
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--accent);
+    letter-spacing:.04em;
+  }
+  .ar p{margin:5px 0 0;font-size:13.5px;line-height:1.5;color:#BFCBC3;}
+
+  footer{
+    margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+    font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--mut);
+    line-height:1.7;letter-spacing:.02em;
+  }
+  footer a{color:var(--teal);text-decoration:none;}
+
+  .toolbar{
+    max-width:880px;margin:0 auto;padding:14px 0 0;
+    display:flex;justify-content:flex-end;
+  }
+  .pbtn{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-soft);background:transparent;
+    border:1px solid var(--line);border-radius:2px;padding:7px 13px;cursor:pointer;
+    transition:all .15s;
+  }
+  .pbtn:hover{border-color:var(--accent);color:var(--accent);}
+  .pbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  @media (max-width:620px){
+    .mast h1{font-size:27px;}
+    .sig{grid-template-columns:1fr;gap:8px;}
+    .sig .idx{padding-top:0;}
+    .ar-grid{grid-template-columns:1fr;}
+    .read{padding:24px 20px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .toolbar{display:none;}
+    .sig{box-shadow:none;break-inside:avoid;}
+    .ar{break-inside:avoid;}
+    .mast{margin:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <svg class="rings" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="none" stroke="#EFF2EC" stroke-width="1">
+      <circle cx="100" cy="100" r="28"/>
+      <circle cx="100" cy="100" r="46"/>
+      <circle cx="100" cy="100" r="64"/>
+      <circle cx="100" cy="100" r="82"/>
+      <circle cx="100" cy="100" r="100"/>
+    </g>
+    <circle cx="100" cy="100" r="4" fill="#D34F38"/>
+  </svg>
+  <div class="mast-inner">
+    <p class="eyebrow">
+      <span>PubMed Signal Digest</span>
+      <span class="dot">●</span>
+      <span>Week of 18 Jun 2026</span>
+      <span class="dot">●</span>
+      <span>Issue&nbsp;No.&nbsp;—</span>
+    </p>
+    <h1>AI &amp; Digital Epidemiology <em>—</em> Weekly Literature Scan</h1>
+    <p class="mast-sub">Curated signals on AI-enabled surveillance, forecasting, and digital public-health intelligence, screened for relevance to Event-Based Surveillance work.</p>
+    <div class="mast-meta">
+      <span><b>Prepared for</b>&nbsp; EBS · SPC</span>
+      <span><b>Signals</b>&nbsp; 3</span>
+      <span><b>Priority</b>&nbsp; 3</span>
+      <span><b>Source</b>&nbsp; PubMed RSS</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="pbtn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="wrap">
+
+  <div class="shead">
+    <span class="num">01</span>
+    <h2>This week's signals</h2>
+    <span class="rule"></span>
+    <span class="scount">3 papers</span>
+  </div>
+
+  <div class="feed">
+    
+  <article class="sig prio">
+    <div class="idx">01</div>
+    <div class="body">
+      <div class="tagrow">
+        <span class="flag">Priority</span>
+        <span class="pmid">PMID 42304469</span>
+        <span class="tag">Geospatial</span>
+        <span class="tag">AI</span>
+      </div>
+      <h3>EpiGIS pro: an AI-powered geospatial intelligence platform for integrated disease surveillance and predictive analytics</h3>
+      <p>A unified platform for AI-driven event extraction and multi-source data integration to improve global disease surveillance.</p>
+      <div class="note"><b>Why it matters —</b> Directly aligns with your work building regional AI-enabled Event-Based Surveillance systems in the Pacific; the modular, reproducible framework offers a scalable blueprint for your multi-source pipelines.</div>
+      <a class="readlink" href="https://pubmed.ncbi.nlm.nih.gov/42304469/?utm_source=Other&utm_medium=rss&utm_campaign=pubmed-2&utm_content=1TCb4A3LOGb1sLBYj25cXQ3OFBaDeL92QOlP1MtYwZY3kAPsya&fc=20260617225033&ff=20260617230630&v=2.20.0">Read full article</a>
+    </div>
+  </article>
+
+  <article class="sig prio">
+    <div class="idx">02</div>
+    <div class="body">
+      <div class="tagrow">
+        <span class="flag">Priority</span>
+        <span class="pmid">PMID 42293655</span>
+        <span class="tag">Forecasting</span>
+        <span class="tag">Surveillance</span>
+      </div>
+      <h3>Protocol-aware epidemic forecasting across heterogeneous public health surveillance systems</h3>
+      <p>Advanced forecasting techniques designed to handle the complexity and variability of heterogeneous public health reporting systems.</p>
+      <div class="note"><b>Why it matters —</b> Essential for your role as an Outbreak Analyst, as bridging heterogeneous datasets is a critical bottleneck in deploying robust early-warning systems across diverse island nations.</div>
+      <a class="readlink" href="https://pubmed.ncbi.nlm.nih.gov/42293655/?utm_source=Other&utm_medium=rss&utm_campaign=pubmed-2&utm_content=1TCb4A3LOGb1sLBYj25cXQ3OFBaDeL92QOlP1MtYwZY3kAPsya&fc=20260617225033&ff=20260617230630&v=2.20.0">Read full article</a>
+    </div>
+  </article>
+
+  <article class="sig prio">
+    <div class="idx">03</div>
+    <div class="body">
+      <div class="tagrow">
+        <span class="flag">Priority</span>
+        <span class="pmid">PMID 42211015</span>
+        <span class="tag">Big Data</span>
+        <span class="tag">Epi</span>
+      </div>
+      <h3>Digital epidemiology: Utilizing big data for public health surveillance and disease outbreak prediction</h3>
+      <p>Overview of leveraging non-traditional digital sources for real-time, high-volume epidemiological surveillance.</p>
+      <div class="note"><b>Why it matters —</b> Reinforces your core technical strategy of integrating multi-source media signals, providing theoretical validation for the AI-driven Event-Based Surveillance you manage at the SPC.</div>
+      <a class="readlink" href="https://pubmed.ncbi.nlm.nih.gov/42211015/?utm_source=Other&utm_medium=rss&utm_campaign=pubmed-2&utm_content=1TCb4A3LOGb1sLBYj25cXQ3OFBaDeL92QOlP1MtYwZY3kAPsya&fc=20260617225033&ff=20260617230630&v=2.20.0">Read full article</a>
+    </div>
+  </article>
+  
+  </div>
+
+  <div class="shead">
+    <span class="num">02</span>
+    <h2>Analyst's read</h2>
+    <span class="rule"></span>
+    <span class="scount">applications to EBS</span>
+  </div>
+
+  <section class="read">
+    <p class="ar-eyebrow">How these connect to your work</p>
+    <h2>Threads worth pulling</h2>
+    <div class="ar-grid">
+      
+      <div class="ar">
+        <h4>System Architecture</h4>
+        <span class="ar-ref">PMID 42304469</span>
+        <p>Adopt the 'EpiGIS Pro' framework to improve your own multi-source event extraction pipelines; focus on their modularity to handle the unique geospatial constraints of the Pacific.</p>
+      </div>
+      <div class="ar">
+        <h4>Data Robustness</h4>
+        <span class="ar-ref">PMID 42293655</span>
+        <p>Integrate these protocol-aware methods to reduce noise in AI briefings, especially when aggregating surveillance data from varying local health capacities.</p>
+      </div>
+      <div class="ar">
+        <h4>Strategic Scaling</h4>
+        <span class="ar-ref">PMID 42211015</span>
+        <p>Use this as supporting literature to advocate for the expansion of non-traditional data sources within regional SPC surveillance frameworks.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <footer>
+    Source: PubMed RSS feed · Generated 18 Jun 2026<br>
+    Summaries are editorial digests, not author abstracts; verify against the original record before citing.
+  </footer>
+
+</div>
+</body>
+</html>
