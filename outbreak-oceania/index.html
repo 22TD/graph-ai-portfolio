@@ -441,6 +441,18 @@ h2.title{font-family:var(--display);font-weight:700;font-size:clamp(23px,3.6vw,3
     <div class="btn-row" style="margin-top:0"><button class="btn btn-ocean" id="dlCohort">⤓ Download cohort (.csv)</button></div>
     <div class="card">
       <h4>Cohort analysis</h4>
+      For each exposure (<code>contact_floodwater</code>, <code>barefoot_fieldwork</code>, <code>rodent_contact</code>): build a 2×2 of exposure against illness, compute the <b>attack rate</b> in the exposed vs. the unexposed, and the <b>relative risk</b>. Then identify the exposure with the strongest, biologically plausible association. (Stuck on the formula? The hint has the full method — but it costs time.)
+    </div>
+    <div class="inp-grid">
+      <div class="cell"><label>Implicated exposure</label>
+        <select id="l7Exp" class="txt"><option value="">choose…</option>
+          <option>contact_floodwater</option><option>barefoot_fieldwork</option><option>rodent_contact</option></select></div>
+      <div class="cell"><label>Relative risk (1 decimal)</label><input id="l7Rr" inputmode="decimal"/></div>
+      <button class="btn btn-primary" id="l7Go">Submit →</button>
+    </div>
+    <div class="feedback" id="l7Msg"></div>
+    <button class="hint-btn" data-hint="h7">Need a hint?</button>
+    <div class="hint" id="h7">
       <b>Relative risk (RR)</b> compares the risk of illness in the <b>exposed</b> group with the risk in the <b>unexposed</b> group.
       <div class="formula-box">
         <span class="formula">RR =
@@ -460,18 +472,8 @@ h2.title{font-family:var(--display);font-weight:700;font-size:clamp(23px,3.6vw,3
           <span class="frac"><span class="num">a / (a + b)</span><span class="den">c / (c + d)</span></span>
         </span>
       </div>
-      Build this table for each exposure (<code>contact_floodwater</code>, <code>barefoot_fieldwork</code>, <code>rodent_contact</code>) using <code>COUNTIFS</code>, then identify the exposure with the strongest, biologically plausible association.
+      Use <code>COUNTIFS</code> on the <code>ill</code> and exposure columns to fill the cells. RR near 1 means no association; RR clearly above 1, with a plausible route into the bloodstream through the skin, is your culprit.
     </div>
-    <div class="inp-grid">
-      <div class="cell"><label>Implicated exposure</label>
-        <select id="l7Exp" class="txt"><option value="">choose…</option>
-          <option>contact_floodwater</option><option>barefoot_fieldwork</option><option>rodent_contact</option></select></div>
-      <div class="cell"><label>Relative risk (1 decimal)</label><input id="l7Rr" inputmode="decimal"/></div>
-      <button class="btn btn-primary" id="l7Go">Submit →</button>
-    </div>
-    <div class="feedback" id="l7Msg"></div>
-    <button class="hint-btn" data-hint="h7">Need a hint?</button>
-    <div class="hint" id="h7">AR<sub>exposed</sub> = ill-and-exposed ÷ all-exposed. RR near 1 means no association; RR clearly above 1 (with a plausible route into the bloodstream through skin) is your culprit. Use <code>COUNTIFS</code> on the <code>ill</code> and exposure columns.</div>
   </div>
 </section>
 
@@ -776,7 +778,7 @@ function rr(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);
 /* ============ ADVISOR ============ */
 const KB=[
  [["attack rate","ar "],"Attack rate = (number of cases ÷ population at risk) × 100. Use the population reference card for denominators and COUNTIFS to count cases per village."],
- [["relative risk","rr","cohort"],"Relative risk = attack rate in the exposed ÷ attack rate in the unexposed. RR≈1 means no association; RR>1 means the exposed are at higher risk."],
+ [["relative risk","rr","cohort"],"Relative risk (RR) = (risk in the exposed group) / (risk in the unexposed group). From a 2x2 with exposed a/b and unexposed c/d, RR = [a/(a+b)] / [c/(c+d)]. RR near 1 means no association; RR above 1 means the exposed are at higher risk."],
  [["odds ratio","or "],"Odds ratio = (a×d)/(b×c) from a 2×2 of exposure vs disease. Used in case-control studies where you can't compute attack rates directly."],
  [["cfr","case fatality","fatality"],"Case-fatality ratio = (deaths among cases ÷ total cases) × 100. Read deaths from the outcome column."],
  [["sensitivity"],"Sensitivity = true positives ÷ all who truly have the disease = a ÷ (a+c) in a 2×2 of test/definition vs truth. It tells you how well you catch real cases."],
